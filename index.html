@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="RPS.css">
+    <title>Rock Paper Scissors</title>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <img src="img/rock-paper-scissors.svg" alt="logo" class="logo">
+            <div class="score">
+                <div class="score_title">score</div>
+                <div id="score_number" class="score_number">0</div>
+            </div>
+        </header>
+        <section id="game_section" class="game">
+            <button id="paper_color" class="choice-btn" data-choice="paper">
+                <div class="choice paper">
+                    <img src="img/icon-paper.svg" alt="Paper">
+                </div>
+            </button>
+            <button id="rock_color" class="choice-btn" data-choice="rock">
+                <div class="choice rock">
+                    <img src="img/icon-rock.svg" alt="Rock">
+                </div>
+            </button>
+            <button id="scissors_color choice-btn-id" class="choice-btn" data-choice="scissors">
+                <div class="choice scissors">
+                    <img src="img/icon-scissors.svg" alt="Scissors">
+                </div>
+            </button>
+        </section>
+    </div>
+    <section id="result_section" class="results hidden">
+        <h2 class="results_heading">you picked!</h2>
+        <h2 class="results_heading">the AI picked!</h2>
+        <div id="clear_result_1" class="results_result"></div>
+        <div id="clear_result_2" class="results_result"></div>
+    </section>
+    <div id="result-text" class="results_winner">
+        <h3 id="relusts_text_hide" class="results_text"></h3>
+    </div>
+    <script src="RPS.js" defer></script>
+</body>
+</html>

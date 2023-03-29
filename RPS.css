@@ -1,0 +1,338 @@
+@import url("https://fonts.googleapis.com/css2?family-Barlow+Semi+Condensed:wght@600:700&display=swap");
+:root {
+  --light-text: #ffffff;
+  --dark-text: hsl(229, 25%, 31%);
+  --score-text: hsl(229, 64%, 46%);
+  --outline: hsl(217, 16%, 45%);
+  --bg-grad-1: hsl(199, 69%, 29%);
+  --bg-grad-2: hsl(198, 58%, 10%);
+  --scissors-1: hsl(39, 89%, 49%);
+  --scissors-2:hsl(40, 67%, 76%);
+  --paper-1: hsl(230, 89%, 62%);
+  --paper-2: hsl(230, 67%, 76%);
+  --rock-1: hsl(349, 71%, 52%);
+  --rock-2: hsl(350, 67%, 76%);
+  --shadow-light: #00000026;
+  --shadow-med: #0000004d;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  font-family: 'Barlow Semi Condensed', sans-serif;
+  background: radial-gradient(at top, var(--bg-grad-1), var(--bg-grad-2));
+  min-height: 100vh;
+  text-transform: uppercase;
+  color: var(--light-text);
+}
+
+.container {
+  position: relative;
+  max-width: 700px;
+  margin: 0 auto;
+  padding-top: 2rem;
+}
+
+.header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 150px;
+  border: 3px solid var(--outline);
+  border-radius: 20px;
+  padding: 1rem 1.4rem 1rem 2rem;
+}
+
+.logo img {
+  height: 100%;
+}
+
+.logo {
+  width: 150px;
+}
+
+.score {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background: #fff;
+  border-radius: 10px;
+  width: 150px;
+  height: 100%;
+  line-height: 1;
+}
+
+.score_title {
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+  color: var(--score-text);
+}
+
+.score_number {
+  font-size: 4rem;
+  font-weight: 700;
+  color: var(--dark-text);
+}
+
+.game {
+  position: relative;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[2];
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-areas: "paper scissors" "rock rock";
+  place-items: center;
+  height: 30rem;
+  padding-top: 4rem;
+}
+
+.game::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 28%;
+  top: 35%;
+  background: url(./img/bg-triangle.svg) no-repeat;
+  z-index: -1;
+}
+
+.choice-btn {
+  border: none;
+  outline: none;
+  background: none;
+  cursor: pointer;
+}
+
+.choice {
+  position: relative;
+  width: 10rem;
+  height: 10rem;
+  background: #fff;
+  border-radius: 50%;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  -webkit-box-shadow: inset 0 0.5rem var(--shadow-light);
+          box-shadow: inset 0 0.5rem var(--shadow-light);
+}
+
+.choice::before,
+.choice::after {
+  content: "";
+  position: absolute;
+  left: -5%;
+  top: -5%;
+  width: 110%;
+  height: 110%;
+  border-radius: 50%;
+  z-index: -1;
+}
+
+.choice-btn:focus .choice::after {
+  opacity: 0.4;
+  -webkit-box-shadow: 0 0 0 0.5rem #f3b0b05b;
+          box-shadow: 0 0 0 0.5rem #f3b0b05b;
+  z-index: -2;
+}
+
+.choice::after {
+  opacity: 0;
+  -webkit-transition: opacity 0.4s ease;
+  transition: opacity 0.4s ease;
+}
+
+.choice img {
+  -webkit-transform: scale(1.5);
+          transform: scale(1.5);
+}
+
+.choice.paper::before {
+  background: -webkit-gradient(linear, left top, left bottom, from(var(--paper-1)), to(var(--paper-2)));
+  background: linear-gradient(to bottom, var(--paper-1), var(--paper-2));
+  -webkit-box-shadow: 0 0.5rem var(--shadow-med), 0 0.5rem var(--paper-2);
+          box-shadow: 0 0.5rem var(--shadow-med), 0 0.5rem var(--paper-2);
+}
+
+.choice.scissors::before {
+  background: -webkit-gradient(linear, left top, left bottom, from(var(--scissors-1)), to(var(--scissors-2)));
+  background: linear-gradient(to bottom, var(--scissors-1), var(--scissors-2));
+  -webkit-box-shadow: 0 0.5rem var(--shadow-med), 0 0.5rem var(--scissors-2);
+          box-shadow: 0 0.5rem var(--shadow-med), 0 0.5rem var(--scissors-2);
+}
+
+.choice.rock::before {
+  background: -webkit-gradient(linear, left top, left bottom, from(var(--rock-1)), to(var(--rock-2)));
+  background: linear-gradient(to bottom, var(--rock-1), var(--rock-2));
+  -webkit-box-shadow: 0 0.5rem var(--shadow-med), 0 0.5rem var(--rock-2);
+          box-shadow: 0 0.5rem var(--shadow-med), 0 0.5rem var(--rock-2);
+}
+
+.choice-btn[data-choice="paper"] {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: paper;
+}
+
+.choice-btn[data-choice="scissors"] {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: scissors;
+}
+
+.choice-btn[data-choice="rock"] {
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-area: rock;
+}
+
+.results {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[2];
+      grid-template-columns: repeat(2, 1fr);
+  place-items: center;
+      grid-template-areas: "you-title ai-title" "you-picked ai-picked";
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.results_heading {
+  font-size: 1.5rem;
+  letter-spacing: 0.1em;
+  padding: 4rem 0 8rem;
+}
+
+.results_result {
+  min-width: 10rem;
+  min-height: 10rem;
+  border-radius: 50%;
+  -webkit-transform: scale(1.4);
+          transform: scale(1.4);
+  z-index: -1;
+}
+
+.results_heading:first-of-type {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: you-title;
+}
+
+.results_heading:last-of-type {
+  -ms-grid-row: 1;
+  -ms-grid-column: 3;
+  grid-area: ai-title;
+}
+
+.results_result:first-of-type {
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
+  grid-area: you-picked;
+}
+
+.results_result:last-of-type {
+  -ms-grid-row: 2;
+  -ms-grid-column: 3;
+  grid-area: ai-picked;
+}
+
+.results.show-winner {
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-areas: "you-title . ai-title" "you-picked result-winner ai-picked";
+}
+
+.choice {
+  -webkit-animation: winner 1s ease forwards;
+          animation: winner 1s ease forwards;
+}
+
+@-webkit-keyframes winner {
+  from {
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+  }
+  to {
+    -webkit-transform: scale(0.8);
+            transform: scale(0.8);
+  }
+}
+
+@keyframes winner {
+  from {
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+  }
+  to {
+    -webkit-transform: scale(0.8);
+            transform: scale(0.8);
+  }
+}
+
+.choice:hover {
+  -webkit-animation: winner1 1s ease forwards;
+          animation: winner1 1s ease forwards;
+}
+
+@-webkit-keyframes winner1 {
+  from {
+    -webkit-transform: scale(0.8);
+            transform: scale(0.8);
+  }
+  to {
+    -webkit-transform: scale(0.7);
+            transform: scale(0.7);
+  }
+}
+
+@keyframes winner1 {
+  from {
+    -webkit-transform: scale(0.8);
+            transform: scale(0.8);
+  }
+  to {
+    -webkit-transform: scale(0.7);
+            transform: scale(0.7);
+  }
+}
+
+.results_winner {
+  -ms-grid-row: 2;
+  -ms-grid-column: 2;
+  grid-area: result-winner;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+}
+
+.results_text {
+  font-size: 3.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.hidden {
+  display: none;
+}
+/*# sourceMappingURL=RPS.css.map */
